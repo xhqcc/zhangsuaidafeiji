@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>石头剪刀布 - 游戏大全</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 0 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .btn-group {
+            margin: 20px 0;
+        }
+        button {
+            padding: 15px 25px;
+            margin: 0 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #3e8e41;
+        }
+        #result {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        .back-home {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>石头剪刀布</h1>
+        <p>选择你的出拳：</p>
+        <div class="btn-group">
+            <button onclick="playGame('石头')">石头</button>
+            <button onclick="playGame('剪刀')">剪刀</button>
+            <button onclick="playGame('布')">布</button>
+        </div>
+        <p id="result"></p>
+    </div>
+    <a href="index.html" class="back-home">返回游戏大全首页</a>
+
+    <script>
+        function playGame(userChoice) {
+            const choices = ['石头', '剪刀', '布'];
+            const computerChoice = choices[Math.floor(Math.random() * 3)];
+            let resultText = "";
+            
+            if (userChoice === computerChoice) {
+                resultText = `平局！你出了${userChoice}，电脑出了${computerChoice}`;
+            } else if (
+                (userChoice === '石头' && computerChoice === '剪刀') ||
+                (userChoice === '剪刀' && computerChoice === '布') ||
+                (userChoice === '布' && computerChoice === '石头')
+            ) {
+                resultText = `🎉 你赢了！你出了${userChoice}，电脑出了${computerChoice}`;
+            } else {
+                resultText = `😢 你输了！你出了${userChoice}，电脑出了${computerChoice}`;
+            }
+            document.getElementById('result').textContent = resultText;
+        }
+    </script>
+</body>
+</html>
